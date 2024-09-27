@@ -2,6 +2,7 @@
 
 BME280Sensor::BME280Sensor() : initialized(false) {}
 
+// start sensor BME280 dengan alamat I2C
 bool BME280Sensor::begin(uint8_t address) {
     if (bme.begin(address)) {
         initialized = true;
@@ -10,6 +11,7 @@ bool BME280Sensor::begin(uint8_t address) {
     return false;
 }
 
+// membaca suhu dari sensor
 float BME280Sensor::readTemperature() {
     if (initialized) {
         return bme.readTemperature();
@@ -18,6 +20,7 @@ float BME280Sensor::readTemperature() {
     }
 }
 
+// membaca tekanan udara dari sensor
 float BME280Sensor::readPressure() {
     if (initialized) {
         return bme.readPressure() / 100.0F; // Convert Pa to hPa
@@ -25,7 +28,7 @@ float BME280Sensor::readPressure() {
         return NAN;
     }
 }
-
+// membaca kelembapan dari sensor
 float BME280Sensor::readHumidity() {
     if (initialized) {
         return bme.readHumidity();
